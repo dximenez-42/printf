@@ -6,7 +6,7 @@
 /*   By: dximenez <dximenez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 20:11:54 by dximenez          #+#    #+#             */
-/*   Updated: 2024/01/30 20:37:53 by dximenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:48:02 by dximenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_print_arg(char c, va_list *args)
 		return (ft_print_num(args, c));
 	else if (c == 'x' || c == 'X')
 		return (ft_print_hex(args, c));
+	else if (c == 'p')
+		return (ft_print_pointer(args, c));
 	else if (c == '%')
 	{
 		write(1, "%", 1);
@@ -38,7 +40,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_putchar(char c, size_t *i)
+static void	ft_putchar(char c, size_t *i)
 {
 	write(1, &c, 1);
 	++(*i);
@@ -85,4 +87,23 @@ size_t	ft_putnbr_uns(unsigned int nb)
 	if (nb < 10)
 		ft_putchar(nb + '0', &i);
 	return (i);
+}
+
+char	*ft_reverse(char *str)
+{
+	int		i;
+	int		size;
+	char	swap;
+
+	i = 0;
+	size = ft_strlen(str) - 1;
+	while (i < size)
+	{
+		swap = str[i];
+		str[i] = str[size];
+		str[size] = swap;
+		++i;
+		--size;
+	}
+	return (str);
 }

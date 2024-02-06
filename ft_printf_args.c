@@ -6,7 +6,7 @@
 /*   By: dximenez <dximenez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:16:41 by dximenez          #+#    #+#             */
-/*   Updated: 2024/01/31 00:08:51 by dximenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:50:41 by dximenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ size_t	ft_print_string(va_list *args, char c)
 {
 	char	*str;
 	char	ch;
+	size_t	len;
 
-	str = calloc(100000, sizeof(char));
+	str = malloc(1000000 * sizeof(char));
 	if (c == 'c')
 	{
 		ch = va_arg(*args, int);
@@ -27,8 +28,10 @@ size_t	ft_print_string(va_list *args, char c)
 	else if (c == 's')
 	{
 		str = va_arg(*args, char *);
-		write(1, str, ft_strlen(str));
-		return (ft_strlen(str));
+		len = ft_strlen(str);
+		write(1, str, len);
+		// free(str);
+		return (len);
 	}
 	return (0);
 }
@@ -54,24 +57,50 @@ size_t	ft_print_num(va_list *args, char c)
 size_t	ft_print_hex(va_list *args, char c)
 {
 	unsigned int	num;
-	char			letter;
 	size_t			i;
+	char			*str;
 
 	i = 0;
-	num = va_arg(*args, unsigned int);;
+	num = va_arg(*args, unsigned int);
+	str = malloc(10000000 * sizeof(char));
 	if (num == 0)
-	{
-		write(1, "0", 1);
-		++i;
-	}
+		str[i++] = '0';
 	while (num > 0)
 	{
-		if (c == 'x')
-			letter = "0123456789abcdef"[num % 16];
+		if (c == 'x' || c == 'p')
+			str[i] = "0123456789abcdef"[num % 16];
 		else if (c == 'X')
-			letter = "0123456789ABCDEF"[num % 16];
-		write(1, &letter, 1);
+			str[i] = "0123456789ABCDEF"[num % 16];
 		num = num / 16;
 		++i;
 	}
+	str[i] = '\0';
+	ft_reverse(str);
+	write(1, str, ft_strlen(str));
+	// free(str);
+	return (i);
+}
+
+size_t	ft_print_pointer(va_list *args, char c)
+{
+	size_t	address;
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	address = va_arg(*args, size_t);
+	str = malloc(19 * sizeof(char));
+	while (address > 0)
+	{
+		str[i] = "0123456789abcdef"[address % 16];
+		address = address / 16;
+		++i;
+	}
+	str[i++] = 'x';
+	str[i++] = '0';
+	str[i] = '\0';
+	ft_reverse(str);
+	write(1, str, ft_strlen(str));
+	// free(str);
+	return (i);
 }

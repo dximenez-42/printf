@@ -6,7 +6,7 @@
 /*   By: dximenez <dximenez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:44:31 by dximenez          #+#    #+#             */
-/*   Updated: 2024/01/31 15:28:20 by dximenez         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:52:56 by dximenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_printf(char const *f, ...)
 	va_list	args;
 	size_t	size;
 	size_t	i;
-	char	*str;
 
 	va_start(args, f);
 	i = 0;
@@ -45,8 +44,33 @@ int	ft_printf(char const *f, ...)
 
 int	main(void)
 {
-	// int data = 29;
-	// ft_printf("Hola, me llamo %c y estoy haciendo el %s pero no se si funciona del todo bien\n", 'D', "printf");
-	// ft_printf("Esto es una prueba de numeros %d, %i, %u\n", -2147483648, 2147483647, 4294967295);
-	// printf("%x\n", data); 
+	printf("\n\n\n");
+	
+	ft_printf("Hola que tal\n");
+	printf("Hola que tal\n");
+
+	printf("\n");
+
+	ft_printf("Hola, me llamo %c y estoy haciendo el %s pero no se si funciona del todo bien\n", 'D', "printf");
+	printf("Hola, me llamo %c y estoy haciendo el %s pero no se si funciona del todo bien\n", 'D', "printf");
+
+	printf("\n");
+
+	ft_printf("Esto es una prueba de numeros %d, %i, %u\n", -2147483648, 2147483647, 4294967295);
+	printf("Esto es una prueba de numeros %d, %i, %u\n", -2147483648, 2147483647, 4294967295);
+
+	printf("\n");
+
+	int hex = 51233;
+	ft_printf("%x\n", hex);
+	printf("%x\n", hex);
+	printf("\n");
+	ft_printf("%X\n", hex);
+	printf("%X\n", hex);
+
+	printf("\n");
+
+	int pointer = 1823671;
+	ft_printf("%p\n", &pointer);
+	printf("%p\n", &pointer);
 }
