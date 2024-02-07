@@ -6,7 +6,7 @@
 /*   By: dximenez <dximenez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 20:11:54 by dximenez          #+#    #+#             */
-/*   Updated: 2024/02/06 18:48:02 by dximenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:42:30 by dximenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,13 @@ size_t	ft_print_arg(char c, va_list *args)
 	else if (c == 'x' || c == 'X')
 		return (ft_print_hex(args, c));
 	else if (c == 'p')
-		return (ft_print_pointer(args, c));
+		return (ft_print_pointer(args));
 	else if (c == '%')
 	{
 		write(1, "%", 1);
 		return (1);
 	}
 	return (0);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
 }
 
 static void	ft_putchar(char c, size_t *i)
@@ -65,7 +55,7 @@ size_t	ft_putnbr_dec(int nb)
 		}
 		if (nb >= 10)
 		{
-			ft_putnbr_dec(nb / 10);
+			i += ft_putnbr_dec(nb / 10);
 			nb = nb % 10;
 		}
 		if (nb < 10)
@@ -81,7 +71,7 @@ size_t	ft_putnbr_uns(unsigned int nb)
 	i = 0;
 	if (nb >= 10)
 	{
-		ft_putnbr_dec(nb / 10);
+		i += ft_putnbr_dec(nb / 10);
 		nb = nb % 10;
 	}
 	if (nb < 10)

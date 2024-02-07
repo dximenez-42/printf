@@ -6,7 +6,7 @@
 /*   By: dximenez <dximenez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:44:31 by dximenez          #+#    #+#             */
-/*   Updated: 2024/02/06 18:52:56 by dximenez         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:44:02 by dximenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 // va_start, va_arg, va_copy, va_end
 
 #include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	ft_printf(char const *f, ...)
 {
@@ -42,6 +52,7 @@ int	ft_printf(char const *f, ...)
 	return (size);
 }
 
+/*
 int	main(void)
 {
 	printf("\n\n\n");
@@ -51,17 +62,26 @@ int	main(void)
 
 	printf("\n");
 
-	ft_printf("Hola, me llamo %c y estoy haciendo el %s pero no se si funciona del todo bien\n", 'D', "printf");
-	printf("Hola, me llamo %c y estoy haciendo el %s pero no se si funciona del todo bien\n", 'D', "printf");
+	ft_printf("Hola, me llamo %c y estoy haciendo el %s pero
+	no se si funciona del todo bien\n", 'D', "printf");
+	printf("Hola, me llamo %c y estoy haciendo el %s pero
+	no se si funciona del todo bien\n", 'D', "printf");
 
 	printf("\n");
 
-	ft_printf("Esto es una prueba de numeros %d, %i, %u\n", -2147483648, 2147483647, 4294967295);
-	printf("Esto es una prueba de numeros %d, %i, %u\n", -2147483648, 2147483647, 4294967295);
+	ft_printf("%d", -10);
+	printf("%d\n", -10);
 
 	printf("\n");
 
-	int hex = 51233;
+	ft_printf("Esto es una prueba de numeros %d, %i, %u\n",
+	-2147483648, 2147483647, 4294967295);
+	printf("Esto es una prueba de numeros %d, %i, %u\n",
+	-2147483648, 2147483647, 4294967295);
+
+	printf("\n");
+
+	int hex = 0x52c3d;
 	ft_printf("%x\n", hex);
 	printf("%x\n", hex);
 	printf("\n");
@@ -73,4 +93,9 @@ int	main(void)
 	int pointer = 1823671;
 	ft_printf("%p\n", &pointer);
 	printf("%p\n", &pointer);
+
+	ft_printf("%s", (char *)NULL);
+	ft_printf("%p", NULL);
 }
+
+*/
